@@ -1,0 +1,204 @@
+AWSTemplateFormatVersion: 2010-09-09
+# This template deploys a VPC in two regions (eu-west-1 or eu-west-2).
+# Supports 2 public and private subnets across two Availability zones.
+# It utilizes a t2.micro instance with Security Group.
+
+Metadata: # Define how parameters are grouped and sorted in the AWS CloudFormation console
+  AWS::CloudFormation::Interface: 
+    ParameterGroups: 
+      - 
+        Label: 
+          default: "Network Configuration"
+        Parameters: 
+          - EnvironmentType
+          - InstanceTypeParameter
+          - SSHLocation
+
+Parameters:
+  
+  # Allowed values for our instance type
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+     - t2.nano
+     - t2.micro
+    Description: Enter t2.nano or t2.micro. The default is set as t2.micro.
+  
+  # WebServer SSH Parameter  
+  SSHLocation:
+    Description: ' The IP address range that can be used to access the web server using SSH.'
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+  
+  # Deployment Environment paramters per region  
+  EnvironmentType:
+    Description: "Choose Environment Type"
+    Type: String
+    Default: Dev
+    AllowedValues:
+       - Prod
+       - Dev
+    ConstraintDescription: must be a Prod or Dev
+    
+Mappings:
+    # Amazon Linux 2 AMI for eu-west-1 (IRL) and eu-west-2 (ENG)
+    AMIRegionMap: 
+      eu-west-1: 
+        Dev: ami-01efa4023f0f3a042 # Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type IRL
+        Prod: ami-096f7a9ab885b50f4 # Amazon Linux 2 AMI (HVM) - Kernel 4.14, SSD Volume Type IRL
+      eu-west-2: 
+        Dev: ami-03e88be9ecff64781 # Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type ENG
+        Prod: ami-0a4b5c4a6ada12bb0 # Amazon Linux 2 AMI (HVM) - Kernel 4.14, SSD Volume Type ENG
+
+Resources:
+  
+  # Adding a VPC
+  LYITVPCL00170565:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: !Join 
+            - ''
+            - - !Ref 'AWS::StackName'
+              - '-VPC'
+  # Adding 2 Public and 2 Private subnets:            
+  LYITPubSub1L00170565:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      CidrBlock: 10.0.10.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs ]  # Get Availability Zone 1
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-Zone1
+        
+  LYITPubSub2L00170565:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      CidrBlock: 10.0.20.0/24
+      AvailabilityZone: !Select [ 1, !GetAZs ]  # Get Availability Zone 2
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-Zone2
+              
+  LYITPrivSub1L00170565:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      CidrBlock: 10.0.40.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs ]  # Get Availability Zone 1
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-Zone1
+        
+  LYITPrivSub2L00170565:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      CidrBlock: 10.0.50.0/24
+      AvailabilityZone: !Select [ 1, !GetAZs ]  # Get Availability Zone 2
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-Zone2
+        
+  # Adding a Security Group for our WebServer              
+  WebServerSGL00170565:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable HTTP through port 80 and SSH through port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref SSHLocation
+
+  # Adding an EC2 instance for our Web Server
+  JumpBoxEC2L00170565:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceTypeParameter
+      ImageId: !FindInMap [AMIRegionMap, !Ref "AWS::Region", !Ref EnvironmentType]
+      SecurityGroupIds:
+        - !Ref WebServerSGL00170565
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-EC2
+      UserData:
+        Fn::Base64: !Sub |
+            #!/bin/bash
+            # install a webserver
+            yum update -y # update existing packages
+            yum install -y httpd # install apache web server
+            systemctl start httpd
+            systemctl enable httpd
+            echo "<html><body><h1>Hello LYIT Devs from Region ${AWS::Region}<h1></body></html>" > /var/www/html/index.html
+  
+  # Adding an Internet Gateway to provide Internet access to our VPC  
+  AWSInternetGateL00170565:
+    Type: 'AWS::EC2::InternetGateway'
+    DependsOn: LYITVPCL00170565
+  AttachGateway:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      InternetGatewayId: !Ref AWSInternetGateL00170565
+  
+  # Adding Route tables for our subnets  
+  PubRoutingL00170565:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      Tags:
+      - Key: Name
+        Value: Public
+  
+  # Public Route depends on Internet Gateway  
+  PubRouteL00170565:
+    Type: 'AWS::EC2::Route'
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref PubRoutingL00170565
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref AWSInternetGateL00170565
+  
+  # Public subnets are attached to public route tables
+  # Private subnets are attached to Private route tables
+  PublicSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LYITPubSub1L00170565
+      RouteTableId: !Ref PubRoutingL00170565
+   
+  PublicSubnetBRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LYITPubSub2L00170565
+      RouteTableId: !Ref PubRoutingL00170565
+
+# Adding Outputs for easier IP and URL access of test webserver
+Outputs:
+  PublicIp:
+    Description: EC2 Instance Public Ip
+    Value: !GetAtt JumpBoxEC2L00170565.PublicIp
+  URL:
+    Description: URL of the sample website
+    Value: !Join 
+      - ''
+      - - 'http://'
+        - !GetAtt 
+          - JumpBoxEC2L00170565
+          - PublicDnsName
