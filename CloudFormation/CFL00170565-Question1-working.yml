@@ -1,0 +1,433 @@
+AWSTemplateFormatVersion: 2010-09-09
+Metadata:
+  'AWS::CloudFormation::Designer':
+    c59cfa4c-f8eb-4476-803d-b558a6df38b8:
+      size:
+        width: 900
+        height: 480
+      position:
+        x: 400
+        'y': 90
+      z: 0
+      embeds:
+        - e7906599-5938-43dc-97fe-6430d6f7464a
+        - de6c032b-83de-4293-ba5e-5c75cf9243fa
+        - 97af4b8a-1bed-4f58-812c-7fce550583a0
+        - bcfc1bcc-d49e-4e99-a2b1-1b00727eaca8
+    97af4b8a-1bed-4f58-812c-7fce550583a0:
+      size:
+        width: 280
+        height: 270
+      position:
+        x: 481
+        'y': 223
+      z: 1
+      parent: c59cfa4c-f8eb-4476-803d-b558a6df38b8
+      embeds:
+        - 9113ca4c-4a89-409c-a06e-8af1909527a7
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 43b1c227-6864-464f-86b5-4523219f7c26
+        - b178495a-c3d7-407c-be48-80b669c444f7
+    de6c032b-83de-4293-ba5e-5c75cf9243fa:
+      size:
+        width: 280
+        height: 270
+      position:
+        x: 980
+        'y': 220
+      z: 1
+      parent: c59cfa4c-f8eb-4476-803d-b558a6df38b8
+      embeds:
+        - 8dc81f5f-1fdf-441a-9b86-d3c433cdf87a
+        - c9dc308f-b2a3-4fa4-aa15-6da72381fb96
+        - 702326b0-eece-4447-bc4b-82f3e2ac3223
+    43b1c227-6864-464f-86b5-4523219f7c26:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 511.0397081277584
+        'y': 259.38801424418403
+      z: 2
+      parent: 97af4b8a-1bed-4f58-812c-7fce550583a0
+      embeds: []
+    b178495a-c3d7-407c-be48-80b669c444f7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 666.7604926685632
+        'y': 260.69659226553534
+      z: 2
+      parent: 97af4b8a-1bed-4f58-812c-7fce550583a0
+      embeds: []
+      isassociatedwith:
+        - 43b1c227-6864-464f-86b5-4523219f7c26
+    1f2b7f3d-f69f-43b7-b748-547a912270ce:
+      size:
+        width: 140
+        height: 115.65429899433366
+      position:
+        x: 513.0025751597854
+        'y': 367.34570100566634
+      z: 2
+      parent: 97af4b8a-1bed-4f58-812c-7fce550583a0
+      embeds:
+        - 7cdeb105-7994-454d-8d6b-0a1780fedee1
+    7cdeb105-7994-454d-8d6b-0a1780fedee1:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 524.779777351947
+        'y': 392.20868341134104
+      z: 3
+      parent: 1f2b7f3d-f69f-43b7-b748-547a912270ce
+      embeds: []
+      iscontainedinside:
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        - 1f2b7f3d-f69f-43b7-b748-547a912270ce
+    9113ca4c-4a89-409c-a06e-8af1909527a7:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 687.6977410101839
+        'y': 406.6030416462054
+      z: 2
+      parent: 97af4b8a-1bed-4f58-812c-7fce550583a0
+      embeds: []
+    e7906599-5938-43dc-97fe-6430d6f7464a:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 865.6643519139608
+        'y': 312.3854241089117
+      z: 1
+      parent: c59cfa4c-f8eb-4476-803d-b558a6df38b8
+      embeds: []
+    bcfc1bcc-d49e-4e99-a2b1-1b00727eaca8:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 842.1099475296375
+        'y': 179.56475494175473
+      z: 1
+      parent: c59cfa4c-f8eb-4476-803d-b558a6df38b8
+      embeds: []
+      dependson:
+        - c59cfa4c-f8eb-4476-803d-b558a6df38b8
+    c9dc308f-b2a3-4fa4-aa15-6da72381fb96:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 1016.1508243693604
+        'y': 256.7708582014815
+      z: 2
+      parent: de6c032b-83de-4293-ba5e-5c75cf9243fa
+      embeds: []
+    702326b0-eece-4447-bc4b-82f3e2ac3223:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 1152.8972276005713
+        'y': 260.0423032548597
+      z: 2
+      parent: de6c032b-83de-4293-ba5e-5c75cf9243fa
+      embeds: []
+      isassociatedwith:
+        - c9dc308f-b2a3-4fa4-aa15-6da72381fb96
+    8dc81f5f-1fdf-441a-9b86-d3c433cdf87a:
+      size:
+        width: 140
+        height: 100.22280779149628
+      position:
+        x: 1022.0394254654412
+        'y': 379.7771922085037
+      z: 2
+      parent: de6c032b-83de-4293-ba5e-5c75cf9243fa
+      embeds:
+        - 8487dbdf-71e1-40e2-9188-95c41bd0ea85
+    8487dbdf-71e1-40e2-9188-95c41bd0ea85:
+      size:
+        width: 60
+        height: 60
+      position:
+        x: 1059.3338990739535
+        'y': 411.83735373161056
+      z: 3
+      parent: 8dc81f5f-1fdf-441a-9b86-d3c433cdf87a
+      embeds: []
+      iscontainedinside:
+        - 8dc81f5f-1fdf-441a-9b86-d3c433cdf87a
+        - 8dc81f5f-1fdf-441a-9b86-d3c433cdf87a
+        - 8dc81f5f-1fdf-441a-9b86-d3c433cdf87a
+    a99bf3c7-954f-4403-a75c-1f5ba836f1ef:
+      source:
+        id: c59cfa4c-f8eb-4476-803d-b558a6df38b8
+      target:
+        id: bcfc1bcc-d49e-4e99-a2b1-1b00727eaca8
+      z: 0
+Resources:
+  # Adding a VPC
+  LYITVPCL00170565:
+    Type: 'AWS::EC2::VPC'
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: stage
+          Value: production
+        - Key: project
+          Value: Lab
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c59cfa4c-f8eb-4476-803d-b558a6df38b8
+  
+  # Adding 1 Public and 1 Private subnets:       
+  LYITPubSubL00170565:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      CidrBlock: 10.1.10.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs ]      
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-Public-A
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 97af4b8a-1bed-4f58-812c-7fce550583a0
+        
+  LYITPrivSubL00170565:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      CidrBlock: 10.1.30.0/24
+      AvailabilityZone: !Select [ 0, !GetAZs ]
+      Tags:
+      - Key: Name
+        Value: !Sub ${AWS::StackName}-Private-A
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: de6c032b-83de-4293-ba5e-5c75cf9243fa
+  
+  # Adding a Security Group      
+  JumpEC2SGL00170565:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable HTTP through port 80 and SSH through port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: !GetAtt LYITVPCL00170565.CidrBlock
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref SSHLocation
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 43b1c227-6864-464f-86b5-4523219f7c26
+        
+  # Adding an EC2 instance
+  JumpBoxEC2L00170565:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceTypeParameter
+      ImageId: !FindInMap [AMIRegionMap, !Ref "AWS::Region", !Ref EnvironmentType]
+      SecurityGroupIds:
+        - !Ref JumpEC2SGL00170565
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: b178495a-c3d7-407c-be48-80b669c444f7
+  
+  # Adding Route tables for our subnets  
+  PubRoutingL00170565:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      Tags:
+      - Key: Name
+        Value: Public
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 1f2b7f3d-f69f-43b7-b748-547a912270ce
+        
+  # Public Route depends on Internet Gateway 
+  PubRouteL00170565:
+    Type: 'AWS::EC2::Route'
+    DependsOn: AttachGateway
+    Properties:
+      RouteTableId: !Ref PubRoutingL00170565
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref AWSInternetGateL00170565
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 7cdeb105-7994-454d-8d6b-0a1780fedee1
+        
+  # Adding a NATGateway      
+  AWSNATGatewayL00170565:
+    Type: 'AWS::EC2::NatGateway'
+    Properties:
+      AllocationId:
+         Fn::GetAtt:
+         - EC2EIPLYITL00170565
+         - AllocationId
+      SubnetId: !Ref LYITPubSubL00170565
+      Tags: 
+      - Key: Name
+        Value: !Sub NAT-${AWS::StackName}
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 9113ca4c-4a89-409c-a06e-8af1909527a7
+  
+  # Adding EIP
+  EC2EIPLYITL00170565:
+    Type: 'AWS::EC2::EIP'
+    Properties:
+      Domain: LYITVPCL00170565
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: e7906599-5938-43dc-97fe-6430d6f7464a
+        
+  # Adding an Internet Gateway to provide Internet access to our VPC
+  AWSInternetGateL00170565:
+    Type: 'AWS::EC2::InternetGateway'
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: bcfc1bcc-d49e-4e99-a2b1-1b00727eaca8
+    DependsOn: LYITVPCL00170565
+  AttachGateway:
+    Type: 'AWS::EC2::VPCGatewayAttachment'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      InternetGatewayId: !Ref AWSInternetGateL00170565
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: a99bf3c7-954f-4403-a75c-1f5ba836f1ef
+        
+  # Adding a second Security Group
+  LYITAppSGL00170565:
+    Type: 'AWS::EC2::SecurityGroup'
+    Properties:
+      GroupDescription: Enable HTTP through port 80 and SSH through port 22
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: !GetAtt LYITVPCL00170565.CidrBlock
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref SSHLocation        
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: c9dc308f-b2a3-4fa4-aa15-6da72381fb96
+  
+  # Adding a second EC2 Instance  
+  LYITAppEC2L00170565:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      InstanceType: !Ref InstanceTypeParameter
+      ImageId: !FindInMap [AMIRegionMap, !Ref "AWS::Region", !Ref EnvironmentType]
+      SecurityGroupIds:
+        - !Ref LYITAppSGL00170565
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 702326b0-eece-4447-bc4b-82f3e2ac3223
+  
+  # Adding Route tables for our subnets
+  PrivRoutingL00170565:
+    Type: 'AWS::EC2::RouteTable'
+    Properties:
+      VpcId: !Ref LYITVPCL00170565
+      Tags:
+      - Key: Name
+        Value: Private
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 8dc81f5f-1fdf-441a-9b86-d3c433cdf87a
+        
+  # Adding Private Route 
+  PrivRouteL00170565:
+    Type: 'AWS::EC2::Route'
+    Properties:
+      RouteTableId: !Ref PrivRoutingL00170565
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref AWSNATGatewayL00170565
+    Metadata:
+      'AWS::CloudFormation::Designer':
+        id: 8487dbdf-71e1-40e2-9188-95c41bd0ea85
+        
+  # Public subnets are attached to public route tables
+  # Private subnets are attached to Private route tables
+  PublicSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LYITPubSubL00170565
+      RouteTableId: !Ref PubRoutingL00170565
+      
+  PrivateSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref LYITPrivSubL00170565
+      RouteTableId: !Ref PrivRoutingL00170565
+      
+Parameters:
+  # Allowed values for our instance type are including in a parameter
+  InstanceTypeParameter:
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: /CALab/ec2instancetype
+  
+  # Security Group SSH Parameter  
+  SSHLocation:
+    Description: ' The IP address range that can be used to access the web server using SSH.'
+    Type: String
+    MinLength: '9'
+    MaxLength: '18'
+    Default: 0.0.0.0/0
+    AllowedPattern: '(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})/(\d{1,2})'
+    ConstraintDescription: must be a valid IP CIDR range of the form x.x.x.x/x.
+    
+  # Deployment Environment paramters per region 
+  EnvironmentType:
+    Description: "The environment type"
+    Type: String
+    Default: Dev
+    AllowedValues:
+       - Prod
+       - Dev
+    ConstraintDescription: must be a Prod or Dev
+Mappings:
+    
+    # Amazon Linux 2 AMI for eu-west-1 (IRL) and eu-west-2 (ENG)    
+    AMIRegionMap: 
+      eu-west-1: 
+        Dev: ami-01efa4023f0f3a042 # Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type IRL
+        Prod: ami-096f7a9ab885b50f4 # Amazon Linux 2 AMI (HVM) - Kernel 4.14, SSD Volume Type IRL
+      eu-west-2: 
+        Dev: ami-03e88be9ecff64781 # Amazon Linux 2 AMI (HVM) - Kernel 5.10, SSD Volume Type ENG
+        Prod: ami-0a4b5c4a6ada12bb0 # Amazon Linux 2 AMI (HVM) - Kernel 4.14, SSD Volume Type ENG
