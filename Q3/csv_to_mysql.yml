@@ -1,0 +1,22 @@
+---
+# Copy python script and execute it in target host
+-   name: Copy python script and execute
+    hosts: dbserver
+    become: yes
+    become_method: sudo
+    tasks:
+      
+    - name: Copy python scripts
+      ansible.builtin.copy:
+        src: /home/l00170565/Desktop/Ansible-Assign/Question-3/csv_to_mysql.py
+        dest: /home/l00170565/Desktop/s3_database/
+        remote_src: no
+
+    - name: Run csv_to_mysql.py
+      command: python3 /home/l00170565/Desktop/s3_database/csv_to_mysql.py
+
+
+
+
+
+   

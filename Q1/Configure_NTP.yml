@@ -1,0 +1,44 @@
+---
+# Install and Configure an NTP 
+- hosts: ntp
+  tasks:
+  # Set the timezone, Install and Configure NTP
+  - name: set timezone
+    become: true
+    shell: timedatectl set-timezone Europe/Athens
+  
+  - name: Install NTP
+    apt: pkg=ntp state=present
+    become: true
+    
+  - name: Copy NTP Config file from Ansiblectrl VM to clients
+    become: true
+    copy: src=/etc/ansible/templates/ntp-l00170565.conf dest=/etc/ntp.conf
+    tags: ntp 
+  
+  - name: Stop NTP if running
+    systemd: name=ntp state=stopped
+    become: true
+   
+  - name: Sync NTP client with NTP Server
+    become: true
+    shell: ntpdate 192.168.209.151
+    # ansible.builtin.command: ntpdate 192.168.209.151
+    tags: ntp
+    
+  #- name: Stop systemd-timesyncd if running
+  #  systemd: name=systemd-timesyncd state=stopped
+  #  become: true
+    
+  - name: Restart NTP
+    systemd: name=ntp state=restarted enabled=yes
+    become: true
+    
+  #- name: Sync hwclock
+  #  shell: hwclock -w
+  #  tags: ntp
+    
+ # - name: Restart NTP
+ #   systemd: name=ntp state=restarted enabled=yes
+ #   become: true  
+    

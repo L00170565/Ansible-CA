@@ -1,0 +1,71 @@
+# Configuration Apache
+- name: Install Apache2
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+     - apache2
+     - php
+     - php-mysql
+     - libapache2-mod-php
+  
+- name: Enabled mod_rewrite
+  apache2_module: name=rewrite state=present
+
+- name: Enabled proxy
+  apache2_module: name=proxy state=present
+
+- name: Enabled proxy_http
+  apache2_module: name=proxy_http state=present
+
+- name: Enabled ssl
+  apache2_module: name=ssl state=present
+
+- name: Create root Directory
+  file:
+    path: "/var/www/{{ http_host }}"
+    state: directory
+    owner: "{{ app_user }}"
+    mode: '0755'
+
+- name: Set up Apache virtualhost
+  template:
+    src: "files/apache.conf.j2"
+    dest: "/etc/apache2/sites-available/{{ http_conf }}"
+
+- name: Enable new site
+  shell: /usr/sbin/a2ensite {{ http_conf }}
+
+- name: Disable default Apache site
+  shell: /usr/sbin/a2dissite 000-default.conf
+  when: disable_default
+  notify: Reload Apache
+
+- name: Ensure server name is under apache2 configuration file
+  lineinfile:
+    path: /etc/apache2/apache2.conf
+    insertafter: EOF
+    line: "ServerName 127.0.0.1"
+
+ # Firewall Configuration
+- name: Allow http through UFW
+  ufw:
+    state: enabled
+    rule: allow
+    port: "{{ http_port }}"
+    proto: tcp
+ 
+ # PHP Info Page Configuration
+- name: Sets Up PHP Info Page
+  template:
+    src: "files/info.php.j2"
+    dest: "/var/www/{{ http_host }}/info.php"
+
+- name: Reload Apache
+  service:
+     name: apache2
+     state: reloaded
+
+- name: Restart Apache
+  service:
+     name: apache2
+     state: restarted    
+

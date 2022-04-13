@@ -1,0 +1,36 @@
+---
+# Install and configure an HTTP server
+- hosts: myserver
+  become: yes
+  vars: 
+      - http_port: "80"
+      
+  tasks:
+  
+    - name: update
+      apt: update_cache=yes
+    
+    - name: Install Apache2
+      apt: name=apache2 state=latest
+      
+    - name: Enabled mod_rewrite
+      apache2_module: name=rewrite state=present
+    
+    - name: Enabled proxy
+      apache2_module: name=proxy state=present
+
+    - name: Enabled proxy_http
+      apache2_module: name=proxy_http state=present
+    
+    - name: Enabled ssl
+      apache2_module: name=ssl state=present
+
+    - name: Allow http through UFW
+      ufw:
+        state: enabled
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
+      notify:
+        - restart UFW   
+

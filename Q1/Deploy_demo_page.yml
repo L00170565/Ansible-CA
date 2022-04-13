@@ -1,0 +1,16 @@
+---
+# Deploy into the server the page downloaded from Repo
+- hosts: myserver
+  become: yes
+  tasks:
+    
+    - name: Copy Demo page on the remote host
+      ansible.builtin.copy:
+        src: /home/l00170565/Desktop/Ansible-CA/Demo_Page_L00170565_Drakos_P.html
+        dest: /var/www/html/
+        remote_src: yes
+        
+    - name: Check that you can connect (GET) to a page and it returns a status 200
+      uri:
+        url: http://192.168.209.150/Demo_Page_L00170565_Drakos_P.html
+        return_content: yes

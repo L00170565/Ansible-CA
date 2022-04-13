@@ -1,0 +1,28 @@
+---
+ # AWS S3 Bucket List
+- name: AWS S3 Bucket List - Ansible
+  hosts: dbserver
+  tasks:
+
+  - name: List keys simple
+    amazon.aws.aws_s3:
+      bucket: mydbcontents
+      mode: list
+    register: listresult
+    
+  - debug: msg={{listresult.s3_keys}}
+  
+   # AWS S3 Get a copy of Bucket contents
+  - name: Simple GET operation
+    amazon.aws.aws_s3:
+      bucket: mydbcontents
+      object: "mydbdetails-new.csv"
+      dest: "/home/l00170565/Desktop/s3_database/mydbdetails-new.csv"
+      mode: get
+    register: getresult
+    
+  - debug: 
+      msg="{{ getresult.msg }}" 
+    when: getresult.changed
+    
+   

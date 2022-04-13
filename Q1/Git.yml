@@ -1,0 +1,24 @@
+---
+# Install Git and clone my repository
+- hosts: myserver
+  become: yes
+  vars: 
+     - Git_Repo: https://github.com/L00170565/Ansible-CA.git
+     - Git_Branch: main
+     - User: l00170565
+     - Project_Name: Ansible-CA
+  gather_facts: no
+  
+  tasks:  
+   
+    - name: Install Git
+      apt: name=git state=present
+      
+    - name: Clone a github repository
+      git:
+        repo: "{{ Git_Repo }}"
+        version: "{{ Git_Branch }}"
+        dest: "/home/{{ User }}/Desktop/{{ Project_Name }}"
+        accept_hostkey: yes
+        clone: yes
+        update: yes

@@ -1,0 +1,9 @@
+---
+mysql_root_password: "P@ssw0rd"
+db_name: students_db
+app_user: "root"
+http_host: "example.com"
+http_conf: "example.com.conf"
+http_port: "80"
+mysql_port: "3306"
+disable_default: true
