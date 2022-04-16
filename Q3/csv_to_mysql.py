@@ -10,22 +10,26 @@
 """ Description: This script is reads the contents of a csv file and writes them into an sql table that is created within than script. """
 
 ## Import the CSV File.
+
 import pandas as pd
+import mysql.connector
+from mysql.connector import Error
+import os
+from getpass import getpass
+from dotenv import load_dotenv
+
 empdata = pd.read_csv('/home/l00170565/Desktop/s3_database/mydbdetails-new.csv',index_col=False, delimiter = ',')
 empdata.head()
 
+load_dotenv() # .env file for credentials.
 
-## MySQL connection and check if table USER exists
-
-import mysql.connector
-from mysql.connector import Error
 try:
-    conn = mysql.connector.connect(user='root', password='P@ssw0rd', host='localhost', database='students_db')
+    conn = mysql.connector.connect(user=os.getenv('db_user'), password=os.getenv('db_pass'), host='localhost', database='students_db')
 except Error as e:
     print("Error while connecting to MySQL", e)
 
 try:
-    conn = mysql.connector.connect(host='localhost', database='students_db', user='root', password='P@ssw0rd')
+    conn = mysql.connector.connect(host='localhost', database='students_db', user=os.getenv('db_user'), password=os.getenv('db_pass'))
     if conn.is_connected():
         cursor = conn.cursor()
         cursor.execute("select database();")
@@ -58,6 +62,4 @@ cursor.execute(sql)
 result = cursor.fetchall()
 for i in result:
     print(i)
-
-
 
